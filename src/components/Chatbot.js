@@ -21,6 +21,37 @@ export default function Chatbot() {
   const conversationEndRef = useRef(null);
   const parentRef = useRef(null);
 
+  // Add CSS variables for styling
+  useEffect(() => {
+    const root = document.documentElement;
+    root.style.setProperty('--primary-color', '#3b82f6');
+    root.style.setProperty('--primary-dark', '#2563eb');
+    root.style.setProperty('--background', '#f9fafb');
+    root.style.setProperty('--text', '#1f2937');
+    root.style.setProperty('--border', '#e5e7eb');
+    root.style.setProperty('--error', '#ef4444');
+    root.style.setProperty('--success', '#22c55e');
+
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      root.style.setProperty('--background', '#1f2937');
+      root.style.setProperty('--text', '#f9fafb');
+      root.style.setProperty('--border', '#374151');
+      root.style.setProperty('--error', '#f87171');
+      root.style.setProperty('--success', '#34d399');
+    }
+
+    return () => {
+      // Reset styles on unmount
+      root.style.removeProperty('--primary-color');
+      root.style.removeProperty('--primary-dark');
+      root.style.removeProperty('--background');
+      root.style.removeProperty('--text');
+      root.style.removeProperty('--border');
+      root.style.removeProperty('--error');
+      root.style.removeProperty('--success');
+    };
+  }, []);
+
   const getMessageRole = (message) => 
     message.role === 'user' ? 'user' : 'assistant';
 

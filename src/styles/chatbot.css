@@ -1,6 +1,6 @@
 /* Modern and minimal chatbot styles */
 .chatbot-container {
-  @apply min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100;
+  @apply min-h-screen bg-[var(--background)] text-[var(--text)];
   @apply flex flex-col;
 }
 
