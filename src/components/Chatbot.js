@@ -7,6 +7,7 @@ import questions from '../questions.json';
 import '../styles/chatbot.css';
 
 export default function Chatbot() {
+  // State variables
   const [userInput, setUserInput] = useState('');
   const [conversation, setConversation] = useState([]);
   const [error, setError] = useState('');
@@ -169,11 +170,14 @@ export default function Chatbot() {
 
     const announcement = document.createElement('div');
     announcement.setAttribute('aria-live', 'assertive');
+    announcement.setAttribute('role', 'status');
     announcement.style.position = 'absolute';
     announcement.style.left = '-9999px';
     announcement.textContent = 'Conversation cleared';
     containerRef.current?.appendChild(announcement);
-    setTimeout(() => announcement.remove(), 1000);
+    setTimeout(() => {
+      announcement.remove();
+    }, 1000);
   };
 
   useEffect(() => {

@@ -5,7 +5,12 @@ export default function Message({ message, role, index, style }) {
   const isQuestion = message.type === 'question';
 
   return (
-    <div className={`message ${role}`} style={style}>
+    <article 
+      className={`message ${role}`} 
+      style={style}
+      role={isQuestion ? 'heading' : 'article'}
+      aria-label={isQuestion ? `Question ${index + 1}` : undefined}
+    >
       <div className="message-content">
         {isQuestion ? (
           <div className="question-header">
@@ -15,6 +20,6 @@ export default function Message({ message, role, index, style }) {
         ) : null}
         <p>{message.content}</p>
       </div>
-    </div>
+    </article>
   );
 }

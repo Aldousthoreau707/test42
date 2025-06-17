@@ -1,0 +1,15 @@
+[build]
+  command = "npm run build"
+  publish = "build"
+  functions = "netlify/functions"
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
+
+[build.environment]
+  OPENAI_API_KEY = "${OPENAI_API_KEY}"
+
+[functions]
+  node_bundler = "esbuild"
